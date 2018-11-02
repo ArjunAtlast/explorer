@@ -8,11 +8,11 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
     NgxsModule.forRoot([
       GameState
     ]),
-    NgxsLoggerPluginModule.forRoot()
+    // NgxsLoggerPluginModule.forRoot()
   ],
   exports: [
     NgxsModule,
-    NgxsLoggerPluginModule
+    // NgxsLoggerPluginModule
   ]
 })
 export class StoreModule {
