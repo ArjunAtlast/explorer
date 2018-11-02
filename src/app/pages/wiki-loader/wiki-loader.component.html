@@ -1,0 +1,8 @@
+<div class="wiki-content" *ngIf="content">
+  <h1 class="title is-size-1" style="border-bottom: 1px solid #2e2e2e;" *ngIf="title">{{title}}</h1>
+  <div *dynamicComponent = "content"></div>
+</div>
+
+<section *ngIf="!content" class="section">
+  <app-loader></app-loader>
+</section>

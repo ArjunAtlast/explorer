@@ -1,0 +1,49 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Explorer
+      </h1>
+      <h2 class="subtitle">
+        Dyuksha '18
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <form class="panel" (submit)="login()">
+
+      <div class="panel-heading">
+        <strong>Login</strong>
+      </div>
+
+      <div class="panel-block">
+          <div class="control has-icons-left has-icons-right">
+            <input [(ngModel)]="email" name="email" class="input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+      </div>
+
+      <div class="panel-block">
+          <div class="control has-icons-left">
+            <input [(ngModel)]="password" name="password" class="input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </div>
+      </div>
+
+      <div class="panel-block">
+        <button class="button is-success" [class.is-loading]="isloading" style="margin: 0 auto;">
+          Login
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>

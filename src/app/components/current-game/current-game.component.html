@@ -1,0 +1,21 @@
+<section *ngIf="(game$ | async) as game">
+    <article class="message is-primary">
+      <div class="message-header">
+        <p>{{game.started?'Current Game':'Next Game'}}</p>
+      </div>
+      <div class="message-body is has-text-centered">
+        <div class="is-size-3">{{game.start.title}}</div>
+        <div>to</div>
+        <div class="is-size-3">{{game.end.title}}</div>
+      </div>
+
+    </article>
+
+    <button (click)="startGame()" class="button is-primary is-large is-fullwidth" *ngIf="!game.started">
+      <span>START GAME</span>
+    </button>
+</section>
+
+<section *ngIf="!(game$ | async) as game" class="section has-text-centered">
+  No Games now!!
+</section>

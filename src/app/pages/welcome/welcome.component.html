@@ -1,0 +1,90 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="container is-fullhd">
+
+  <div class="columns">
+
+    <div class="column is-one-quarter fixed">
+
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Explorer
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <section class="section has-background-white-ter">
+          <app-current-game></app-current-game>
+      </section>
+
+      <section class="section has-background-primary has-text-white has-text-centered" style="margin-top: auto;">
+        <span class="title has-text-light is-size-5">TIME LEFT</span>
+        <div class="is-size-1 has-text-weight-light" *ngIf="(timeLeft$ | async) as time">
+          {{ time.min | number:'2.0-0' }} : {{ time.sec | number:'2.0-0' }}
+        </div>
+      </section>
+    </div>
+    <div class="column is-three-quarters is-offset-one-quarter">
+
+      <div class="section has-background-light" *ngIf="(playerStats$ | async) as stats">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Games</p>
+              <p class="title">{{stats.games}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Paths</p>
+              <p class="title">{{stats.paths}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Points</p>
+              <p class="title">{{stats.points}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Rank</p>
+              <p class="title">{{stats.rank}}</p>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+
+      <div class="section" *ngIf="(stat$ | async) as stat">
+        <nav class="breadcrumb has-arrow-separator is-centered is-small" aria-label="breadcrumbs">
+          <ul>
+            <li *ngFor="let path of stat.paths" class="has-text-primary"> {{path.title}} </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="section">
+        <router-outlet></router-outlet>
+      </div>
+
+
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Explorer Game</strong> developed as part of <a href="https://www.dyuksha.org">Dyuksha18</a>
+          </p>
+          <p>
+            Copyright &copy; 2018 NSS College of Engineering, Palakkad
+          </p>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+</div>
