@@ -20,12 +20,12 @@
           <app-current-game></app-current-game>
       </section>
 
-      <section class="section has-background-primary has-text-white has-text-centered" style="margin-top: auto;">
+      <!-- <section class="section has-background-primary has-text-white has-text-centered" style="margin-top: auto;">
         <span class="title has-text-light is-size-5">TIME LEFT</span>
         <div class="is-size-1 has-text-weight-light" *ngIf="(timeLeft$ | async) as time">
           {{ time.min | number:'2.0-0' }} : {{ time.sec | number:'2.0-0' }}
         </div>
-      </section>
+      </section> -->
     </div>
     <div class="column is-three-quarters is-offset-one-quarter">
 
@@ -52,7 +52,7 @@
           <div class="level-item has-text-centered">
             <div>
               <p class="heading">Rank</p>
-              <p class="title">{{stats.rank}}</p>
+              <p class="title">{{rank$ | async}}</p>
             </div>
           </div>
         </nav>
@@ -75,7 +75,7 @@
       <footer class="footer">
         <div class="content has-text-centered">
           <p>
-            <strong>Explorer Game</strong> developed as part of <a href="https://www.dyuksha.org">Dyuksha18</a>
+            <strong>Explorer Game</strong> developed as part of <strong>Dyuksha18</strong>
           </p>
           <p>
             Copyright &copy; 2018 NSS College of Engineering, Palakkad

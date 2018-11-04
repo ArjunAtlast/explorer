@@ -89,7 +89,7 @@ export class WikiApiService {
     div.innerHTML = text;
 
     //remove unwanted reference and navigations
-    $(div).find('#References, .reflist, [role="navigation"], sup, .reference').remove();
+    $(div).find('#References, .reflist, [role="navigation"], sup, .reference, .ambox-Refimprove').remove();
 
     var removeStart = $(div).find("#See_also").parent().next();
     removeStart.nextAll().remove();
@@ -108,6 +108,39 @@ export class WikiApiService {
         $(this).replaceWith(`<div style="text-align:center">${$(this).html()}</div>`)
       }
     );
+
+    $(div).find('big').each(
+      function () {
+        $(this).replaceWith(`<span style="font-size: 1.1em">${$(this).html()}</span>`)
+      }
+    );
+
+    $(div).find('s, strike').each(
+      function () {
+        $(this).replaceWith(`<span style="text-decoration: line-through;">${$(this).html()}</span>`)
+      }
+    );
+
+    $(div).find('u').each(
+      function () {
+        $(this).replaceWith(`<span style="text-decoration: underline;">${$(this).html()}</span>`)
+      }
+    );
+
+    $(div).find('dir').each(
+      function () {
+        $(this).replaceWith(`<ul>${$(this).html()}</ul>`)
+      }
+    );
+
+    $(div).find('tt').each(
+      function () {
+        $(this).replaceWith(`<span style="font-family: monospace">${$(this).html()}</span>`)
+      }
+    );
+
+    $(div).find('acronym, applet, basefont, frame, frameset, isindex, noframes').remove();
+    $(div).find('acronym, applet, basefont, frame, frameset, isindex, noframes').remove();
 
     //disable external links
     $(div).find('.external').attr('href', '');

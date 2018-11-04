@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
 import { Stat } from 'src/app/models/stat.model';
 import { GameState } from 'src/app/store/states/game.state';
+import { WikiGameService } from 'src/app/services/wiki-game.service';
 
 @Component({
   selector: 'app-welcome',
@@ -15,9 +16,11 @@ export class WelcomeComponent implements OnInit {
 
   stat$: Observable<Stat>;
 
+  rank$: Observable<number>;
+
   @Select(GameState.stats) playerStats$: Observable<any>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private game: WikiGameService) { }
 
   ngOnInit() {
 
@@ -30,6 +33,10 @@ export class WelcomeComponent implements OnInit {
     });
 
     this.stat$ = this.store.select(state => state.game.stat);
+
+    this.game.openGame();
+
+    this.rank$ = this.game.rank$;
 
   }
 
