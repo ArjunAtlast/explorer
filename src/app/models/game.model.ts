@@ -1,7 +1,7 @@
 import { Page } from "./page.model";
 
 export interface Game {
-  game_id?: string;
+  id?: string;
   start: Page;
   end: Page;
   total_points: number;

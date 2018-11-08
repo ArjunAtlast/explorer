@@ -51,13 +51,20 @@ export class WikiApiService {
 
     return this.getPageText(title)
       .pipe(map(data => {
-        const content = this.filterContent(data.parse.text['*']);
-        const page: Page = {
-          page_id: data.parse.pageid,
-          title: data.parse.title
+
+        // console.log(data);
+        if(data && data.parse) {
+
+          const content = this.filterContent(data.parse.text['*']);
+          const page: Page = {
+            page_id: data.parse.pageid,
+            title: data.parse.title
+          }
+          const redirects = data.parse.redirects;
+          return { page, content, redirects }
+
         }
-        const redirects = data.parse.redirects;
-        return { page, content, redirects }
+
       }));
   }
 
@@ -89,7 +96,7 @@ export class WikiApiService {
     div.innerHTML = text;
 
     //remove unwanted reference and navigations
-    $(div).find('#References, .reflist, [role="navigation"], sup, .reference, .ambox-Refimprove').remove();
+    $(div).find('#References, .reflist, [role="navigation"], sup, .reference, .ambox, #toc').remove();
 
     var removeStart = $(div).find("#See_also").parent().next();
     removeStart.nextAll().remove();

@@ -14,6 +14,10 @@
     <button (click)="startGame()" class="button is-primary is-large is-fullwidth" *ngIf="!game.started">
       <span>START GAME</span>
     </button>
+
+    <button (click)="skipGame()" class="button is-primary is-large is-fullwidth" *ngIf="game.started">
+      <span>SKIP GAME</span>
+    </button>
 </section>
 
 <section *ngIf="!(game$ | async) as game" class="section has-text-centered">

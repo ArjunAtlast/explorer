@@ -91,8 +91,6 @@ export class WikiGameService {
               this.store.dispatch(new EndGame(true));
 
               if(this.games.length > 0) {
-                this.games = _.shuffle(this.games);
-
                 this.store.dispatch(new CreateGame(this.games.pop()));
               }
 
@@ -124,7 +122,7 @@ export class WikiGameService {
     //create a dummy user
     const user: User = this.auth.currentUser;
 
-    this.player_id = this.fs.createId();
+    this.player_id = user.user_id;
 
     //create a player
     const player: Player = {
@@ -182,6 +180,19 @@ export class WikiGameService {
     const game = await this.store.select(state => state.game.game).pipe(first(val => val != null)).toPromise();
 
     this.router.navigate([`wiki/${game.start.title}`]);
+
+  }
+
+  /**
+   * Skip current game
+   */
+  async skipGame() {
+
+    const game = await this.store.select(state => state.game.game).pipe(first(val => val != null)).toPromise();
+
+    this.games.unshift(game);
+
+    this.store.dispatch(new CreateGame(this.games.pop()));
 
   }
 

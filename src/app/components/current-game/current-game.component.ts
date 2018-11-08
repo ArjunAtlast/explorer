@@ -21,9 +21,12 @@ export class CurrentGameComponent implements OnInit {
 
   }
 
-
   startGame() {
     this.wikiGame.startGame();
+  }
+
+  skipGame() {
+    this.wikiGame.skipGame();
   }
 
 
