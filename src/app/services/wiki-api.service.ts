@@ -52,7 +52,7 @@ export class WikiApiService {
     return this.getPageText(title)
       .pipe(map(data => {
 
-        // console.log(data);
+        console.log(data);
         if(data && data.parse) {
 
           const content = this.filterContent(data.parse.text['*']);
@@ -93,7 +93,7 @@ export class WikiApiService {
 
     const div = document.createElement('div');
 
-    div.innerHTML = text;
+    div.innerHTML = text.replace(/\{/g,"&#123;").replace(/\{/g, "&#125;");
 
     //remove unwanted reference and navigations
     $(div).find('#References, .reflist, [role="navigation"], sup, .reference, .ambox, #toc').remove();

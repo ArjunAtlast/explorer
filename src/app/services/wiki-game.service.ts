@@ -194,6 +194,8 @@ export class WikiGameService {
 
     this.store.dispatch(new CreateGame(this.games.pop()));
 
+    this.router.navigate(['']);
+
   }
 
 }
