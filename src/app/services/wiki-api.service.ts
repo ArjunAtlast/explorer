@@ -52,7 +52,6 @@ export class WikiApiService {
     return this.getPageText(title)
       .pipe(map(data => {
 
-        console.log(data);
         if(data && data.parse) {
 
           const content = this.filterContent(data.parse.text['*']);
@@ -93,7 +92,7 @@ export class WikiApiService {
 
     const div = document.createElement('div');
 
-    div.innerHTML = text.replace(/\{/g,"&#123;").replace(/\{/g, "&#125;");
+    div.innerHTML = text.replace("{{{coat_alt}}}", "");
 
     //remove unwanted reference and navigations
     $(div).find('#References, .reflist, [role="navigation"], sup, .reference, .ambox, #toc').remove();
@@ -104,7 +103,7 @@ export class WikiApiService {
     //change all href to routerLinks
     $(div).find('a').each(
       function() {
-        $(this).get(0).setAttributeNS("http://www.mozilla.org/ns/specialspace","routerLink", $(this).attr('href'));
+        $(this).get(0).setAttributeNS("http://www.mozilla.org/ns/specialspace","routerLink", decodeURI($(this).attr('href')));
         $(this).removeAttr('href');
       }
     );
