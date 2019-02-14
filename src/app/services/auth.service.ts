@@ -44,7 +44,7 @@ export class AuthService {
 
     catch(error) {
 
-      throw error;
+      alert(error.message);
 
     }
 
